@@ -1,8 +1,8 @@
-import { FaEdit } from "react-icons/fa"
-import { AiFillDelete } from "react-icons/ai"
-import axios from "axios"
-import EditTutorial from "./EditTutorial"
-// const tutorials = [
+import { FaEdit } from "react-icons/fa";
+import { AiFillDelete } from "react-icons/ai";
+import axios from "axios";
+import EditTutorial from "./EditTutorial";
+import { useState } from "react";// const tutorials = [
 //   {
 //     id: 1,
 //     title: "JS",
@@ -14,29 +14,11 @@ import EditTutorial from "./EditTutorial"
 //     description: "JS library for UI design",
 //   },
 // ]
-
-const TutorialList = ({ tutorials, getTutorials }) => {
-  const deleteTutorial = async (id) => {
-    const BASE_URL = "https://tutorial-api.fullstack.clarusway.com/tutorials"
-    try {
-      await axios.delete(`${BASE_URL}/${id}/`)
-    } catch (error) {
-      console.log(error)
-    }
-    getTutorials()
-  }
-
-  const editTutorial = async ({ id, title, description }) => {
-    const BASE_URL = "https://tutorial-api.fullstack.clarusway.com/tutorials"
-    try {
-      await axios.put(`${BASE_URL}/${id}/`, { title, description })
-    } catch (error) {
-      console.log(error)
-    }
-    getTutorials()
-  }
-
-  return (
+const TutorialList = ({ tutorials, getTutorials }) => {  const [item, setItem] = useState("")
+  console.log(item);  const deleteTutorial = async (id) => {
+    const BASE_URL = "https://tutorial-api.fullstack.clarusway.com/tutorials/";    await axios.delete(`${BASE_URL}${id}/`);
+    getTutorials();
+  };  return (
     <div className="container mt-4">
       <table className="table table-striped">
         <thead>
@@ -51,7 +33,7 @@ const TutorialList = ({ tutorials, getTutorials }) => {
         </thead>
         <tbody>
           {tutorials?.map((item) => {
-            const { id, title, description } = item
+            const { id, title, description } = item;
             return (
               <tr key={id}>
                 <th>{id}</th>
@@ -64,13 +46,7 @@ const TutorialList = ({ tutorials, getTutorials }) => {
                     className="me-2 text-warning"
                     data-bs-toggle="modal"
                     data-bs-target="#edit-tutor"
-                    // onClick={() =>
-                    //   editTutorial({
-                    //     id: 502,
-                    //     title: "dokanmayin",
-                    //     description: "REACT",
-                    //   })
-                    // }
+                    onClick={()=>setItem(item)}
                   />
                   <AiFillDelete
                     size={22}
@@ -80,14 +56,10 @@ const TutorialList = ({ tutorials, getTutorials }) => {
                   />
                 </td>
               </tr>
-            )
+            );
           })}
         </tbody>
-      </table>
-
-      <EditTutorial />
+      </table>      <EditTutorial item={item} getTutorials={getTutorials}/>
     </div>
-  )
-}
-
-export default TutorialList
+  );
+};export default TutorialList;
