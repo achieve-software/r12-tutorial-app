@@ -1,3 +1,29 @@
+
+# Tutorial App
+## Description
+Project aims to create Tutorial App project
+## Project Skeleton
+```
+|----public
+        |----index.html
+|----src        
+        |----components
+                 |----AddTutorial.jsx
+                 |----EditTutorial.jsx
+                 |----TutorialList.jsx
+       |----pages
+                 |----Home.jsx
+       |----App.js
+       |----index.js
+|----readme.md  
+
+```
+## Project-gif
+![JavaScript-project](https://raw.githubusercontent.com/achieve-software/achieve-software/main/img/r12tutorial.gif)
+## Project-link
+https://unique-mooncake-15ad09.netlify.app/
+### At the end of the project, following topics are to be covered;
+-React
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
